@@ -26,7 +26,6 @@ Configure the environment:
 
 In your .env file:
 
-`
   source env/bin/activate
 
   export MAX_ATTEMPTS=<NUM>
@@ -35,7 +34,6 @@ In your .env file:
 
   pip3 install -r requirements.txt
   pip3 install -e .
-`
 
 `source .env`
 
