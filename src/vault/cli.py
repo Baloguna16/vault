@@ -23,6 +23,8 @@ def interface():
 
 @click.command('init')
 def init():
+    """Spin up the ~secret~ that you'll use to decrypt future entries."""
+
     click.echo('Welcome to the vault. Spinning up a password for you...')
     pw, dt_created = _create_key()
     click.echo(pw)
@@ -31,6 +33,8 @@ def init():
 @click.option('-l', '--label', help='Name of the resource you would like to lock')
 @click.option('-d', '--data', help='The resource that you would like to lock')
 def encrypt(label, data):
+    """Encrypt your secrets simply by providing a label and the data itself (and the pw, duh)"""
+
     with open(STORAGE, 'r') as f: storage = json.load(f)
     check_cooldown(storage)
 
@@ -45,7 +49,9 @@ def encrypt(label, data):
 
         enc_data = _encrypt(data, key)
 
-        storage[hashed_label] = enc_data.decode('utf8')
+        assert storage.get(label) is None, 'Sorry, looks like somethings already stashed here...'
+
+        storage[label] = enc_data.decode('utf8')
         with open(STORAGE, 'w') as f: json.dump(storage, f)
         click.echo('Your resource has been stored in the vault!')
         return
@@ -56,6 +62,8 @@ def encrypt(label, data):
 @click.command('decrypt')
 @click.option('-l', '--label', help='Name of the resource you would like to retrieve')
 def decrypt(label):
+    """Decrypt a requested entry from the past once you've forgotten it"""
+
     with open(STORAGE, 'r') as f: storage = json.load(f)
     check_cooldown(storage)
 
