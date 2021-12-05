@@ -2,6 +2,8 @@ cffi==1.15.0
 click==8.0.3
 cryptography==36.0.0
 DateTime==4.3
+-e git+https://github.com/Baloguna16/vault.git@29b514aafbbf8d309939d9e6444a7f460df9a9d0#egg=no_secrets_here&subdirectory=src
 pycparser==2.21
 pytz==2021.3
+Werkzeug==2.0.2
 zope.interface==5.4.0
