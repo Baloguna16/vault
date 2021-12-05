@@ -1,0 +1,16 @@
+# Compiled python modules.
+*.pyc
+.DS_Store
+__pycache__
+env
+
+# Private files
+.env
+
+# Notes
+todo.txt
+cheat.txt
+data.json
+
+# Python egg metadata, regenerated from source files by setuptools.
+*.egg-info/
